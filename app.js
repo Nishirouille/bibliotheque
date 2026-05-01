@@ -2,7 +2,6 @@ const STORAGE_KEY = "book_scanner_books";
 
 let books = loadBooks();
 let scannerRunning = false;
-let html5QrCode;
 
 document.getElementById("startScanner")
     .addEventListener("click", startScanner);
@@ -28,8 +27,8 @@ function startScanner() {
             target: document.querySelector("#reader"),
             constraints: {
                 facingMode: "environment",
-                width: { max: 200 },
-                height: { max: 120 },
+                width: { ideal: 1280 },
+                height: { ideal: 720 },
                 focusMode: "continuous"
             }
         },
@@ -75,12 +74,28 @@ async function handleDetection(result) {
     lastScan = now;
 
     const isbn = cleanISBN(result.codeResult.code);
+    console.log(result.codeResult.code);
 
     if (!isValidISBN(isbn)) return;
 
     stopScanner();
     await fetchBook(isbn);
-    console.log(result.codeResult.code);
+    
+}
+
+async function manualSearch() {
+    const input = document.getElementById("manualISBN");
+
+    const isbn = cleanISBN(input.value);
+
+    if (!isValidISBN(isbn)) {
+        alert("ISBN invalide");
+        return;
+    }
+
+    await fetchBook(isbn);
+
+    input.value = "";
 }
 
 function cleanISBN(text) {
