@@ -4,8 +4,15 @@ body {
 }
 
 #reader {
-    width: 300px;
-    margin-top: 20px;
+    width: 100%;
+    max-width: 320px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+#reader video {
+    width: 100%;
+    height: auto;
 }
 
 li {
