@@ -4,15 +4,22 @@ body {
 }
 
 #reader {
-    width: 100%;
-    max-width: 200px;
-    margin: 90px auto;
+    position: relative;
+    width: 300px;
+    height: 180px;
+    margin: 20px auto;
     overflow: hidden;
+    border-radius: 12px;
 }
 
-#reader video {
-    width: 100%;
-    height: auto;
+#reader video,
+#reader canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
 }
 
 li {
