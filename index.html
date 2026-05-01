@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Scanner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Scanner de livres</h1>
+
+    <button id="startScanner">Démarrer le scan</button>
+
+    <div id="reader"></div>
+
+    <h2>Recherche manuelle</h2>
+
+    <input
+        type="text"
+        id="manualISBN"
+        placeholder="Entrer un ISBN"
+    >
+
+    <button id="searchISBN">Rechercher</button>
+
+    <h2>Livres scannés</h2>
+    <label for="sortSelect">Trier par :</label>
+        <select id="sortSelect">
+            <option value="added">Ordre d’ajout</option>
+            <option value="title">Titre</option>
+            <option value="author">Auteur</option>
+            <option value="publisher">Éditeur</option>
+        </select>
+    <ul id="bookList"></ul>
+
+    <button id="exportCSV">Exporter CSV</button>
+
+    <script src="https://unpkg.com/@ericblade/quagga2/dist/quagga.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>

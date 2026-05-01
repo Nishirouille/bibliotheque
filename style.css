@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+#reader {
+    width: 300px;
+    margin-top: 20px;
+}
+
+li {
+    margin: 10px 0;
+}
