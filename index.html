@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="livres.html">Livres</a></li>
+            <li><a href="connect.html">Se connecter</a></li>
+        </ul>
+    </nav>
 
     <h1>Scanner de livres</h1>
 
@@ -24,7 +30,8 @@
 
     <button id="searchISBN">Rechercher</button>
 
-    <h2>Livres scannés</h2>
+    <br>
+    <h1>Livres scannés</h1>
     <label for="sortSelect">Trier par :</label>
         <select id="sortSelect">
             <option value="added">Ordre d’ajout</option>
@@ -33,11 +40,15 @@
             <option value="publisher">Éditeur</option>
         </select>
     <ul id="bookList"></ul>
+    <br>
+    <br>
 
     <button id="exportCSV">Exporter CSV</button>
 
     <script src="https://unpkg.com/@ericblade/quagga2/dist/quagga.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
+    
 
 </body>
 </html>
