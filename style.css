@@ -3,6 +3,60 @@ body {
     padding: 20px;
 }
 
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #555;
+    margin-top: 30px;
+}
+
+*{
+    margin:0px;
+    padding:0px;
+    font-family: avenir, sans-serif;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav li {
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+
+nav ul::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+nav{
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+    position: sticky;
+    top: 0;
+}
+
+nav a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 2px solid transparent;
+    padding: 10px 0;
+}
+
+nav a:hover {
+    color:orange;
+    border-bottom: 2px solid gold;
+}
+
 #reader {
     position: relative;
     width: 300px;
@@ -25,3 +79,4 @@ body {
 li {
     margin: 10px 0;
 }
+
