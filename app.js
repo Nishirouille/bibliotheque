@@ -1,6 +1,20 @@
+async function loadBooksFromDB() {
+    const user = (await client.auth.getUser()).data.user;
+
+    if (!user) return;
+
+    const { data } = await client
+        .from("books")
+        .select("*")
+        .order("created_at", { ascending: true });
+
+    books = data || [];
+    renderBooks();
+}
+
 const STORAGE_KEY = "book_scanner_books";
 
-let books = loadBooks();
+let books = [];
 let scannerRunning = false;
 
 document.getElementById("startScanner")
@@ -152,8 +166,20 @@ async function fetchBook(isbn) {
             thumbnail: info.imageLinks?.thumbnail || ""
         };
 
+const user = (await supabase.auth.getUser()).data.user;
+
+        await supabase
+            .from("books")
+            .insert({
+                user_id: user.id,
+                isbn: book.isbn,
+                title: book.title,
+                authors: book.authors,
+                publisher: book.publisher,
+                thumbnail: book.thumbnail
+            });
+
         books.push(book);
-        saveBooks();
         renderBooks();
 
     } catch (error) {
@@ -247,4 +273,5 @@ function loadBooks() {
     return data ? JSON.parse(data) : [];
 }
 
-renderBooks();
+
+loadBooksFromDB();
