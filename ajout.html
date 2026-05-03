@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un livre</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Scanner</a></li>
+            <li><a href="livres.html">Livres</a></li>
+            <li><a href="ajout.html">Ajout manuel</a></li>
+            <li><a href="connect.html" id="loginLink">Se connecter</a></li>
+        </ul>
+    </nav>
+
+    <h1>Ajouter un livre</h1>
+
+    <form id="bookForm">
+        <input
+            type="text"
+            id="title"
+            placeholder="Titre"
+            required
+        >
+
+        <input
+            type="text"
+            id="authors"
+            placeholder="Auteur(s)"
+            required
+        >
+
+        <input
+            type="text"
+            id="publisher"
+            placeholder="Éditeur"
+            required
+        >
+
+        <input
+            type="text"
+            id="isbn"
+            placeholder="ISBN (optionnel)"
+        >
+
+        <button type="submit">
+            Ajouter
+        </button>
+    </form>
+
+    <p id="message"></p>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="app.js"></script>
+    <script src="ajout.js"></script>
+
+</body>
+</html>
