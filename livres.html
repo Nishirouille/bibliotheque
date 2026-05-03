@@ -10,7 +10,9 @@
     <nav>
         <ul>
             <li><a href="index.html">Scanner</a></li>
-            <li><a href="connect.html">Se connecter</a></li>
+            <li><a href="livres.html" >Livres</a></li>
+            <li><a href="ajout.html">Ajout manuel</a></li>
+            <li><a href="connect.html" id="loginLink">Se connecter</a></li>
         </ul>
     </nav>
 
@@ -23,7 +25,9 @@
             <option value="publisher">Éditeur</option>
         </select>
     <ul id="bookList"></ul>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
