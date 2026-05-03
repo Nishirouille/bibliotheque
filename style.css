@@ -5,13 +5,22 @@ body {
 
 h1 {
     text-align: center;
-    color: #333;
+    color: rgb(255, 149, 0);
     margin-bottom: 30px;
 }
 
 h2 {
     color: #555;
     margin-top: 30px;
+}
+
+input[type="text"] {
+    width: 20%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 *{
@@ -53,8 +62,15 @@ nav a {
 }
 
 nav a:hover {
-    color:orange;
-    border-bottom: 2px solid gold;
+    color:white;
+    border-bottom: 2px solid white;
+}
+
+.bannier {
+    background-color: rgb(255, 149, 0);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 1000;
 }
 
 #reader {
