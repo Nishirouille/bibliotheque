@@ -12,22 +12,74 @@ async function loadBooksFromDB() {
     renderBooks();
 }
 
+async function updateAuthUI() {
+    const {
+        data: { user }
+    } = await client.auth.getUser();
+
+    const loginLink =
+        document.getElementById("loginLink");
+
+    if (!loginLink) return;
+    
+    if (user) {
+        console.log(user);
+        console.log(loginLink);
+        console.log("Bloc exécuté");
+        loginLink.textContent = "Déconnexion";
+        loginLink.href = "#";
+
+        loginLink.onclick = async () => {
+            await client.auth.signOut();
+            location.reload();
+        };
+    }
+}
+
 const STORAGE_KEY = "book_scanner_books";
 
 let books = [];
 let scannerRunning = false;
 
-document.getElementById("startScanner")
-    .addEventListener("click", startScanner);
+const startScannerBtn =
+    document.getElementById("startScanner");
 
-document.getElementById("exportCSV")
-    .addEventListener("click", exportCSV);
+if (startScannerBtn) {
+    startScannerBtn.addEventListener(
+        "click",
+        startScanner
+    );
+}
 
-document.getElementById("searchISBN")
-    .addEventListener("click", manualSearch);
+const exportBtn =
+    document.getElementById("exportCSV");
 
-document.getElementById("sortSelect")
-    .addEventListener("change", renderBooks);
+if (exportBtn) {
+    exportBtn.addEventListener(
+        "click",
+        exportCSV
+    );
+}
+
+const searchBtn =
+    document.getElementById("searchISBN");
+
+if (searchBtn) {
+    searchBtn.addEventListener(
+        "click",
+        manualSearch
+    );
+}
+
+const sortSelect =
+    document.getElementById("sortSelect");
+
+if (sortSelect) {
+    sortSelect.addEventListener(
+        "change",
+        renderBooks
+    );
+}
 
 
 let lastScan = 0;
@@ -166,9 +218,14 @@ async function fetchBook(isbn) {
             thumbnail: info.imageLinks?.thumbnail || ""
         };
 
-const user = (await supabase.auth.getUser()).data.user;
+    const user = (await client.auth.getUser()).data.user;
 
-        await supabase
+    if (!user) {
+        alert("Tu dois être connecté");
+        return;
+    }
+
+    const { error } = await client
             .from("books")
             .insert({
                 user_id: user.id,
@@ -179,8 +236,7 @@ const user = (await supabase.auth.getUser()).data.user;
                 thumbnail: book.thumbnail
             });
 
-        books.push(book);
-        renderBooks();
+        await loadBooksFromDB();
 
     } catch (error) {
         console.error(error);
@@ -189,10 +245,16 @@ const user = (await supabase.auth.getUser()).data.user;
 
 function renderBooks() {
     const list = document.getElementById("bookList");
+
+    if (!list) return;
+
     list.innerHTML = "";
 
+    const sortElement =
+    document.getElementById("sortSelect");
+
     const sortMode =
-        document.getElementById("sortSelect").value;
+        sortElement ? sortElement.value : "added";
 
     let sortedBooks = [...books];
 
@@ -273,5 +335,7 @@ function loadBooks() {
     return data ? JSON.parse(data) : [];
 }
 
-
-loadBooksFromDB();
+document.addEventListener("DOMContentLoaded", async () => {
+    await updateAuthUI();
+    await loadBooksFromDB();
+});
