@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
+    <nav class="bannier">
         <ul>
             <li><a href="index.html#scanner">Scanner</a></li>
             <li><a href="livres.html">Livres</a></li>
@@ -21,6 +21,10 @@
 
         /* Conteneur du formulaire */
         .login-container {
+            position: fixed; /* Toujours visible à l'écran */
+            top: 50%;        /* Centre vertical */
+            left: 50%;       /* Centre horizontal */
+            transform: translate(-50%, -50%);
             background: white;
             padding: 30px;
             border-radius: 10px;
@@ -36,12 +40,12 @@
         }
 
         /* Champs de saisie */
-        .login-container input[type="text"],
+        .login-container input[type="email"],
         .login-container input[type="password"] {
             width: 100%;
             padding: 12px;
             margin: 8px 0;
-            border: 1px solid #ccc;
+            border: 2px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
         }
@@ -93,7 +97,7 @@
 
         <button type="submit">Se connecter</button>
     </form>
-
+    <br>
     <button id="signupBtn">
         Créer un compte
     </button>
