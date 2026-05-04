@@ -56,6 +56,8 @@ nav{
 nav a {
     display: block;
     text-decoration: none;
+    width:100%;
+    text-align : center;
     color: #333;
     border-bottom: 2px solid transparent;
     padding: 10px 0;
